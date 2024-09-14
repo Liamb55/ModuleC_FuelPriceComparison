@@ -6,3 +6,4 @@ set -o errexit
 pip freeze > requirements.txt
 pip install -r requirements.txt
 pip install gunicorn
+pip install flask
