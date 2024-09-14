@@ -11,3 +11,4 @@ pylsl==1.15.0
 pywinusb==0.4.2
 Werkzeug==3.0.3
 zipp==3.20.0
+gunicorn==23.0.0
