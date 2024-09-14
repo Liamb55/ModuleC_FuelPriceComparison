@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<main>
+  <body onload="onload_fuel_price_update()">
+    
+ <p>    </p> <img  src="static/images/petrolstations.jpg" height="250px"  width="700px" alt="membership login" >
+  
+  
+    <h2 id="header2" >Enter brand name, town Location, address and fuel price details below.</h2>
+    <div>
+      <form id="inputLocation" method="POST" action="/AddLocation/" onsubmit="postLocationForm(event,this)">
+        <input type="text" name="loc_name" id="loc_name" size="40" placeholder="Name" required>
+        <input type="text" name="loc_town" id="loc_town" size="40" placeholder="Town" required>
+        <input type="text" name="loc_address" id="loc_town" size="40" placeholder="Address" required>
+        <input type="text" name="loc_dieselprice" id="loc_dieselprice" size="40" placeholder="Price: Diesel" required>
+        <input type="text" name="loc_petrolprice" id="loc_petrolprice" size="40" placeholder="Price: Petrol" required>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+  <script src="/static/javascript/fuel_price_update.js"></script> 
+</main>
+{% endblock  %}

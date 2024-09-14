@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Fuel Price Comparison</title>
+  <meta charset="utf-8">
+  <link href="/static/css/main.css" rel="stylesheet">
+  <header >    
+    <h1>Diesel & Petrol Price Comparison Website</h1>           
+  </header>
+</head>
+  <div id="wrapper">
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('membership') }}">Membership Area</a></li> 
+        <li><a href="{{ url_for('fuel_price_update') }}">Update Fuel Prices</a></li>      
+    </nav>
+       
+{% block main %}
+{% endblock %}
+          
+{% block aside %}
+{% endblock %}
+
+
+<footer>
+  
+  <br><br>
+  <p> The sources for the above page are:</p><a href="https://www.theaa.com"target=_blank> 
+  AA Website</a> and <a href="https://www.google.com/maps"target=_blank> Google Maps</a>
+</footer>
+ 
+</html>

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+  
+{% block main %}
+<main>
+  <body onload="onload_membership()">
+  <h2>Members Area<br> </h2> 
+
+    <div>
+        
+        
+    
+      {% if email %}
+        <h3><b>Hello {{email}}                     ---You can apply below for the Member's fuel card</b></h3>
+        <br>
+        <form id="ApplyFuelCard" method="POST" action="/ApplyFuelCard/">
+          
+            <td><br><button type="submit" style="font-size: 1.5em;"><b>Apply for a fuel card</b></button></td>
+          </tr>       
+        </form>
+        <br><br><br><br><br><br>
+        <form id="frmLogout" method="POST" action="/Logout/">
+          <button type="submit" style="font-size: 1.5em;"><b>Logout<b></button>
+        </form>
+      {% endif %}
+
+      {% if not email %}
+        <form id="frmLogin" method="POST" action="http://127.0.0.1:8080/Login/" onsubmit="postLoginForm(event,this)">
+        <table>
+        <tr>
+          <td>E-mail:</td>
+          <td><input type="text" name="email" id="email" class="loginInput" placeholder="you@yourdomain.com" required></td>
+        </tr>
+        <tr>
+          <td>Password:</td>
+          <td><input type="text" name="password" size="50"  class="loginInput" placeholder="password"></td>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td><input type="text" name="name" size="50"  class="loginInput" placeholder="name" ></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td><input type="text" name="address" size="50"  class="loginInput" placeholder="address"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button type="submit" style="float:right;"><b>Members Area Login<b></button></td>   
+        </tr>
+        {% if error_message %}
+          <tr>
+            <td> {{ error_message }} </td>
+            <td></td>  
+          </tr>
+        {% endif %}
+      </table>
+      <p>     ( Note: Only email address input is required to login at this time of website construction)
+      </form>
+      {% endif %}
+      {% endblock%}
+      {% block aside %}
+
+      {% endblock%}
+    </div>
+  </body>
+  <script src="/static/javascript/membership.js"></script> 
+</main>
+

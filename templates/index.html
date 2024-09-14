@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+
+<main>
+     <body onload="onload_index()">
+          <br><br>
+          <h2>Background</h2>
+          <p> This website is designed to show the diesel and unleaded petrol prices in towns in Leinster.   </p>
+          <p> Customers can also provide updates on prices in petrol stations in their local town, providing their brand name, their address and their fuel prices directly into this website.</p>  
+          <p> Also by logging into our membership area, members can,by signing up to our fuel card, achieve additional savings and benefits</p> 
+     </p>
+          
+          <h2> <b>Search for diesel and petrol prices in any town: </b></h2>
+          <p> ( Depending on fuel type selected, prices are shown from lowest to highest price) </p>
+               <tr>
+                    <form id="searchLocation" method="POST" action="/GetLocations/">
+                         <td><label>Search</label></td>
+                         <td><input type="radio" class="radio" id="rbDiesel" name="SortBy" value="diesel" {% if selectedfuel=="diesel" %} checked=true {% endif %}>Diesel</td>
+                         <td><input type="radio" class="radio" id="rbPetrol" name="SortBy" value="petrol" {% if selectedfuel=="petrol" %} checked=true {% endif %}>Petrol</td>
+                        
+                         <td>prices in</td>
+                         <td><select name="selectTown" id="selectTown">
+                              {% for town in towns %}
+                                   <option value="{{ town }}"{% if town==selectedtown %} selected="selected"{% endif %}>{{ town }}</option>
+                              {% endfor %}
+                         </select></td>
+                         <input type="submit" value="Submit">
+                    </form>
+               </tr>
+               <br>    
+          <table id="LocationTable" name="LocationTable" class=table>
+               <thead>
+                    <tr>
+                         <td></td>
+                         <td></td>
+                         <td>Price</td>
+                         <td>Price </td>
+                         <td></td>
+                    </tr>
+                    <tr>
+                         <td>Name</td>
+                         <td>Address</td>
+                         <td>Diesel</td>
+                         <td>Petrol</td>
+                         <td></td>
+                    </tr>
+               </thead>
+               <tbody id="LocationTable_body">
+                    {% if locations %}
+                         {% for location in locations %}
+                         <tr>
+                              <td>{{ location[0] }}</td>
+                              <td>{{ location[2] }}</td>
+                              <td>{{ location[3] }}</td>
+                              <td>{{ location[4] }}</td>
+                              <td><button type='button' onclick= 'map_showlocation();' class='showmap'>show on map</button></td> 
+                         <tr>
+                         {% endfor %}
+                    {% endif %}
+               </tbody>
+          </table>
+          
+     </body>
+     <script src="/static/javascript/index.js"></script> 
+</main>
+      
+{% endblock %}
+
+{% block aside %}
+     <aside>
+          <br><br><br><br>
+          
+          <iframe id="LocationMap" name="LocationMap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d619423.8268478867!2d-6.549056360738801!3d52.66676288162403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485d77162004666d%3A0xa0ab73f82bcf150d!2sLeinster!5e0!3m2!1sen!2sie!4v1725041826812!5m2!1sen!2sie" width="400" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              
+     </aside>
+{% endblock %}
