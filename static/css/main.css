@@ -208,3 +208,7 @@ thead {
 
     font-size:120%;
   }
+
+  #map {
+    height: 100%;
+  }

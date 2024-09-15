@@ -55,15 +55,14 @@
                               <td>{{ location[2] }}</td>
                               <td>{{ location[3] }}</td>
                               <td>{{ location[4] }}</td>
-                              <td><button type='button' onclick= 'map_showlocation();' class='showmap'>show on map</button></td> 
+                              <td><button type='button' onclick= 'map_showlocation("{{ location[0] }}", "{{ location[2] }}", "{{ selectedtown }}");' class='showmap'>show on map</button></td> 
                          <tr>
                          {% endfor %}
                     {% endif %}
                </tbody>
           </table>
-          
+          <script  src="/static/javascript/index.js"></script> 
      </body>
-     <script src="/static/javascript/index.js"></script> 
 </main>
       
 {% endblock %}
@@ -71,8 +70,16 @@
 {% block aside %}
      <aside>
           <br><br><br><br>
-          
-          <iframe id="LocationMap" name="LocationMap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d619423.8268478867!2d-6.549056360738801!3d52.66676288162403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485d77162004666d%3A0xa0ab73f82bcf150d!2sLeinster!5e0!3m2!1sen!2sie!4v1725041826812!5m2!1sen!2sie" width="400" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              
+                  
+          <iframe id="LocationMap" 
+               name="LocationMap" 
+               src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAGMjgKmdqusYOmN1qv2GpE5_mU2RS9Mzo&q={{ selectedtown }},ireland"
+               width="400" 
+               height="500" 
+               style="border:0;" 
+               allowfullscreen="" 
+               loading="lazy" 
+               referrerpolicy="no-referrer-when-downgrade">
+          </iframe>  
      </aside>
 {% endblock %}
