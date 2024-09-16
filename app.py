@@ -30,8 +30,12 @@ allLocations = [{"name" : "circleK", "town" : "Gorey", "address" : "Arklow Road"
 @app.route("/")
 def index():
     towns = getTowns()
-    locations = SearchLocations("gorey", "diesel")
-    return render_template('index.html', towns=towns, locations=locations, selectedtown="gorey", selectedfuel="diesel")
+
+    town = "gorey"
+    sortby = "dieselprice"
+    locations = SearchLocations(town, sortby)
+    
+    return render_template('index.html', towns=towns, locations=locations, selectedtown=town, selectedfuel=sortby)
 
 
 @app.route("/membership")
@@ -56,23 +60,16 @@ def GetLocations():
     return render_template('index.html', towns=towns, locations=locations, selectedtown=selectTown, selectedfuel=SortBy)
 
 
-def SearchLocations(town, sortby = "petrol"):
+def SearchLocations(town, sortKey = "petrolprice"):
     global allLocations
     foundLocations = []
     
     for loc in allLocations:
 
-        if loc.get("town").lower() == town.lower():
-            foundLocations.append([loc.get("name"), loc.get("town"), loc.get("address"), loc.get("dieselprice"), loc.get("petrolprice")])   
-        
-    if sortby == "petrol":
-        sortIndex = 4
-    elif sortby == "diesel":
-        sortIndex = 3
-    else: 
-        sortIndex = 4
+        if loc["town"].lower() == town.lower():
+            foundLocations.append(loc)   
 
-    sortedLocations = sorted(foundLocations, key=lambda d: d[sortIndex])
+    sortedLocations = sorted(foundLocations, key=lambda d: d[sortKey])
     
     return sortedLocations
 

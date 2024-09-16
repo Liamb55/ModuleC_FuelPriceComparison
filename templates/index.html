@@ -17,8 +17,8 @@
                <tr>
                     <form id="searchLocation" method="POST" action="/GetLocations/">
                          <td><label>Search</label></td>
-                         <td><input type="radio" class="radio" id="rbDiesel" name="SortBy" value="diesel" {% if selectedfuel=="diesel" %} checked=true {% endif %}>Diesel</td>
-                         <td><input type="radio" class="radio" id="rbPetrol" name="SortBy" value="petrol" {% if selectedfuel=="petrol" %} checked=true {% endif %}>Petrol</td>
+                         <td><input type="radio" class="radio" id="rbDiesel" name="SortBy" value="dieselprice" {% if selectedfuel=="dieselprice" %} checked=true {% endif %}>Diesel</td>
+                         <td><input type="radio" class="radio" id="rbPetrol" name="SortBy" value="petrolprice" {% if selectedfuel=="petrolprice" %} checked=true {% endif %}>Petrol</td>
                         
                          <td>prices in</td>
                          <td><select name="selectTown" id="selectTown">
@@ -51,11 +51,11 @@
                     {% if locations %}
                          {% for location in locations %}
                          <tr>
-                              <td>{{ location[0] }}</td>
-                              <td>{{ location[2] }}</td>
-                              <td>{{ location[3] }}</td>
-                              <td>{{ location[4] }}</td>
-                              <td><button type='button' onclick= 'map_showlocation("{{ location[0] }}", "{{ location[2] }}", "{{ selectedtown }}");' class='showmap'>show on map</button></td> 
+                              <td>{{ location["name"] }}</td>
+                              <td>{{ location["address"] }}</td>
+                              <td>{{ location["dieselprice"] }}</td>
+                              <td>{{ location["petrolprice"] }}</td>
+                              <td><button type='button' onclick= 'map_showlocation("{{ location["name"] }}", "{{ location["address"] }}", "{{ location["town"] }}");' class='showmap'>show on map</button></td> 
                          <tr>
                          {% endfor %}
                     {% endif %}
