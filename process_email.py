@@ -10,9 +10,11 @@ def extract_domain(email):
         raise InvalidEmail(f"Expected a single @ sign, but '{email}' has {email.count('@')} ")
 
     local_part, domain_part = email.split("@")
+
     if not local_part:
         raise InvalidEmail("An email address cannot have an empty local part")
     if not domain_part:
         raise InvalidEmail("An email address cannot have an empty domain part")
+    
     return local_part
 

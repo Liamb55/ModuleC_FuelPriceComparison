@@ -89,7 +89,7 @@ def Login():
         error_message = f"Error details: {e}"
         
     if isValid == True:
-        return render_template('membership.html', email=frm_email)
+        return render_template('membership.html', email=local_part)
     else:
         return render_template('membership.html', error_message=error_message)
 
